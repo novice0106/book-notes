@@ -21,3 +21,30 @@ IAM ユーザ名をクリックし `セキュリティ認証情報` タブから
 
 ### フリープランの制限
 ナレッジベースに登録されているチャンクを確認するために Amazon OpenSerch Service にアクセスしようとしたところ、フリープランのアカウントからのアクセスは許可されていないと表示された。
+
+## 6.1.5 Python で RAG フローを実装する
+
+### 環境構築
+2025/12/28 現在、単純に `pip install -r requirements.txt` を実行すると `tiktoken` のインストールに失敗する。
+どうやら Rust コンパイラが必要とのこと。
+JupyterLab のカーネルが `conda-pytorch-p310` だったので（Gemini くん曰く） Conda 環境に直接 Rust をインストールするのが良いとのこと。
+
+```txt
+方法1：Conda環境に直接 Rust を入れる（推奨）
+SageMakerのターミナル、またはノートブックのセルで以下を実行してください。これが最も確実で、今後手動でパスを通す必要がなくなります。
+
+# ノートブックのセルで実行する場合
+!conda install -c conda-forge -y rust
+
+# ノートブックのセルで実行する場合
+!conda install -c conda-forge -y rust
+なぜこれがいいのか？ Condaでインストールすると、その環境（conda-pytorch-p310）がアクティブになったときに、自動的に Rust のパスも有効になるよう設計されているからです。インストール後、そのまま pip install tiktoken が通るようになります。
+```
+
+これで必要なパッケージ全てインストールできることを確認した。
+
+やり残したこと
+
+- JupyterLab を VSCode と同じ使い心地にする
+  - JupyterLab でコード補完できるようにする
+  - JupyterLab で定義に飛べるようにする
