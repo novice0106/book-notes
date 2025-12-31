@@ -48,3 +48,38 @@ SageMakerのターミナル、またはノートブックのセルで以下を�
 - JupyterLab を VSCode と同じ使い心地にする
   - JupyterLab でコード補完できるようにする
   - JupyterLab で定義に飛べるようにする
+
+AWS toolkit を使えば VSCode から AWS の各種サービスへアクセスできることに気づいた。
+本当は WSL から接続したかったが、以下の理由から Windows 環境からアクセスするのが素直らしい。
+
+```txt
+WSL 経由で SageMaker Studio（SageMaker AI）に接続しようとした際に、Remote-SSH 拡張機能が見つからないというエラーが出るのは、VSCode の「リモート内リモート」の制限が原因です。
+
+結論から言うと、AWS Toolkit の SageMaker 接続機能は、現時点では Windows（ローカル）上の VSCode から直接実行する必要があります。 WSL のウィンドウ内からは実行できません。
+
+なぜエラーが出るのか？
+VSCode の設計上、拡張機能には 2 つのタイプがあります。
+
+UI 拡張機能: Windows 側で動く（Remote-SSH, テーマなど）
+
+ワークスペース拡張機能: 接続先（WSL や SSH 先）の中で動く（Python, AWS Toolkit など）
+
+あなたが WSL のウィンドウを開いているとき、AWS Toolkit は「WSL というリモート環境」の中で動いています。しかし、AWS Toolkit が SageMaker に接続するために呼び出そうとする Remote-SSH は Windows 側にしか存在しないため、WSL 側から見つけられず「インストールしてください」というエラーになります。
+```
+
+## 6.1.6 Streamlit で UI 付きのチャットボットをホストする
+AWS が提供するサービスは多岐にわたるので、AWS の SDK (boto3) はメタプログラミングを採用している。
+普通なら AWS のサービスが増えるたびに、開発者が SDK の特定のクラスにメソッドを追加する必要がある。
+例えば `client.invoke_model()` を書き込まなければいけない。
+
+しかし boto3 はサービス定義データ (JSON) を読み取り、実行時にメモリ上で `invoke_model` というメソッドを生成できるようになっている。
+つまり AWS の開発者は `client` を直接編集する必要がなくなり、サービスがスケールする。
+より具体的にプロセスを記述すると以下のようになる。
+
+1. `boto3.client('s3')` と実行した瞬間、Boto3 は `s3.json` という定義ファイルを読み込みます。
+2. その JSON に `"PutObject"` という項目があれば、Boto3 は `put_object` という名前のメソッドをその場でメモリ上に生成し、クライアント・オブジェクトにくっつけます。
+3. これにより、ソースコード（`boto3/s3/client.py` など）には `def put_object` と書かれていないのに、私たちは `client.put_object()` と呼べるようになります。
+
+AWS はメタプログラミングを採用しているので、`boto3.client("bedrock-runtime")` などと書いても VSCode のメソッド補完を使えない。
+そういうときは `boto3-stubs` を使う。
+`boto3-stubs` をインストールすると型情報が書かれたスタブファイルを参照できるようになる。
