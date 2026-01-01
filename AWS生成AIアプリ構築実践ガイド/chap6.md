@@ -83,3 +83,22 @@ AWS が提供するサービスは多岐にわたるので、AWS の SDK (boto3)
 AWS はメタプログラミングを採用しているので、`boto3.client("bedrock-runtime")` などと書いても VSCode のメソッド補完を使えない。
 そういうときは `boto3-stubs` を使う。
 `boto3-stubs` をインストールすると型情報が書かれたスタブファイルを参照できるようになる。
+
+
+pytest を使ってテストコードを書いた。
+`call_rag` のテストは成功し、以下の出力を得た。
+
+```bash
+(src) sagemaker-user@default:~/src$ uv run pytest
+================================================================================ test session starts ================================================================================
+platform linux -- Python 3.12.9, pytest-9.0.2, pluggy-1.6.0
+rootdir: /home/sagemaker-user/src
+configfile: pyproject.toml
+plugins: langsmith-0.3.45, anyio-4.12.0, dotenv-0.5.2
+collected 2 items                                                                                                                                                                   
+
+tests/test_tools.py call_rag の返り値: {'answer': 'わかりません', 'thinking': '<context></context>には高橋さんの好きな飲み物についての情報がありません。'}
+..
+
+================================================================================= 2 passed in 1.98s =================================================================================
+```
