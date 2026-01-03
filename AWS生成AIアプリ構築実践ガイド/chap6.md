@@ -105,3 +105,5 @@ tests/test_tools.py call_rag の返り値: {'answer': 'わかりません', 'thi
 
 
 ローカルで Streamlit のアプリを動かせた。
+
+FastAPI を導入した。

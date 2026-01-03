@@ -2,6 +2,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import boto3
+import uvicorn
+from dotenv import load_dotenv
+from fastapi import FastAPI
+
 if TYPE_CHECKING:
     from mypy_boto3_bedrock_agent_runtime import AgentsforBedrockRuntimeClient
     from mypy_boto3_bedrock_agent_runtime.type_defs import (
@@ -43,20 +48,29 @@ TOOL_TARGET_SCHEMA: ToolConfigurationTypeDef = {
     ],
 }
 
+load_dotenv("./.env")
+app = FastAPI()
 
+
+@app.get("/rag/")
 def call_rag(
     question: str,
     knowledge_base_id: str,
-    agents_runtime_client: AgentsforBedrockRuntimeClient,
-    runtime_client: BedrockRuntimeClient,
+    region: str,
     model_id: str = "us.meta.llama4-maverick-17b-instruct-v1:0",
 ) -> dict[str, str]:
+    agents_runtime_client = boto3.client("bedrock-agent-runtime", region_name=region)
+    runtime_client = boto3.client("bedrock-runtime", region_name=region)
+
     retrieval_result = _retrieve_context(
         question=question, knowledge_base_id=knowledge_base_id, agents_runtime_client=agents_runtime_client
     )
-    context = "\n===\n".join([
-        knowledge_base_retrieval_result["content"].get("text", "") for knowledge_base_retrieval_result in retrieval_result 
-    ])
+    context = "\n===\n".join(
+        [
+            knowledge_base_retrieval_result["content"].get("text", "")
+            for knowledge_base_retrieval_result in retrieval_result
+        ]
+    )
     prompt = PROMPT_TEMPLATE.format(question=question, context=context)
 
     try:
@@ -74,7 +88,7 @@ def call_rag(
             result = {
                 "answer": tool_use["input"]["answer"],
                 "thinking": tool_use["input"]["thinking"],
-                "context": context
+                "context": context,
             }
             return result
         else:
@@ -98,3 +112,7 @@ def _retrieve_context(
     except Exception as e:
         print(f"予期せぬエラーが発生しました: {e}")
         raise
+
+
+if __name__ == "__main__":
+    uvicorn.run("backend:app", host="localhost", port=8052, reload=True)
