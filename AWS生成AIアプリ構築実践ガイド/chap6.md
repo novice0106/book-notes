@@ -107,3 +107,16 @@ tests/test_tools.py call_rag の返り値: {'answer': 'わかりません', 'thi
 ローカルで Streamlit のアプリを動かせた。
 
 FastAPI を導入した。
+
+EC2 に backend.py をデプロイしようとしたが EC2 にうまく接続できなかった。
+IAM ロールを設定したあとに VSCode からリモート接続しようとすると以下のエラーが表示される。
+
+```bash
+Failed to update connect script: Error: ENOENT: no such file or directory, open 'c:\Users\akihi\.vscode\extensions\amazonwebservices.aws-toolkit-vscode-3.91.0\resources\ec2_connect.ps1'
+```
+
+Gemini くんに聞いたら以下のように言われた。
+
+```txt
+そのエラーは、AWS Toolkit（VSCode拡張機能）が接続に使用するスクリプトファイル（ec2_connect.ps1）を見つけられないという、拡張機能側のファイル不備、またはインストール不良が原因です。
+```
