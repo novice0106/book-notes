@@ -8,6 +8,7 @@ dependencies = [
     "boto3>=1.42.19",
     "boto3-stubs>=1.42.19",
     "datasets==3.0.2",
+    "fastapi>=0.128.0",
     "langchain==0.3.21",
     "langchain-aws==0.2.18",
     "langchain-text-splitters>=0.3.11",
@@ -17,7 +18,9 @@ dependencies = [
     "pytest>=9.0.2",
     "python-dotenv==1.0.1",
     "ragas==0.2.14",
+    "requests>=2.32.5",
     "streamlit==1.39.0",
+    "uvicorn>=0.40.0",
 ]
 
 [dependency-groups]
