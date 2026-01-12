@@ -9,5 +9,7 @@
     - 読み始めた日: 2026/01/08
 - [IoTプロジェクトで学ぶ 実践PoC](https://techbookfest.org/product/nc3PV011x9Grcg1mJSLrrU?productVariantID=8Mv6DucKXNDBxd2QJC7zhJ)
     - 読み始めた日: 2026/01/09
+- [なぜ、これが名画なの？](https://amzn.asia/d/60cLRw3)
+    - 読み始めた日: 2026/01/12
 
 ## 読み終わった本
