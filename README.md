@@ -11,6 +11,8 @@
     - 読み始めた日: 2026/01/12
 - [大人のための国語ゼミ](https://amzn.asia/d/3NbI9D3)
     - 読み始めた日: 2026/01/30
+- [Docker&Kubernetesのきほんのきほん](https://amzn.asia/d/iNAXNF4)
+    - 読み始めた日: 2026/01/31
 
 ## 読み終わった本
 
