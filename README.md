@@ -7,8 +7,6 @@
     - 読み始めた日: 2026/01/08
 - [IoTプロジェクトで学ぶ 実践PoC](https://techbookfest.org/product/nc3PV011x9Grcg1mJSLrrU?productVariantID=8Mv6DucKXNDBxd2QJC7zhJ)
     - 読み始めた日: 2026/01/09
-- [なぜ、これが名画なの？](https://amzn.asia/d/60cLRw3)
-    - 読み始めた日: 2026/01/12
 - [大人のための国語ゼミ](https://amzn.asia/d/3NbI9D3)
     - 読み始めた日: 2026/01/30
 - [Docker&Kubernetesのきほんのきほん](https://amzn.asia/d/iNAXNF4)
@@ -24,3 +22,7 @@
     - 読み始めた日: 2026/01/16
     - 読み終わった日: 2026/01/29
     - コメント: 無料アカウントでは独自ドメイン取得ができず、10 章以降を実施しなかった。そのうちもう一度読むかも。
+- [なぜ、これが名画なの？](https://amzn.asia/d/60cLRw3)
+    - 読み始めた日: 2026/01/12
+    - 読み終わった日: 2026/02/05
+    - コメント: 興味をそそられなくなったので中止。
