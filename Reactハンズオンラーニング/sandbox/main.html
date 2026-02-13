@@ -13,6 +13,8 @@
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
         <script>
+            const id = "baked-salmon"
+            const title = "Baked Salmon"
             const ingredients = [
                 "1 lb Salmon",
                 "1 cup Pine Nuts",
@@ -30,21 +32,30 @@
                 "Add the yellow squash and put back in the oven for 30 mins.",
                 "Remove from oven and let cool for 15 minutes. Add the lettuce and serve."
             ]
-            const recipe = React.createElement(
-                "section",
-                {id: "baked-salmon"},
-                React.createElement("h1", null, "Baked Salmon"),
-                React.createElement(
+            function IngredientsList({ ingredients }) {
+                return React.createElement(
                     "ul",
                     {className: "ingredients"},
                     ingredients.map((ingredient, i) => React.createElement("li", {key: i}, ingredient))
-                ),
-                React.createElement(
+                );
+            }
+            function InstructionsList({ instructions }) {
+                return React.createElement(
                     "section",
                     {className: "instructions"},
-                    instructions.map((instruction, i) => React.createElement("p", {key: i}, instruction))
-                )
-            )
+                    instructions.map((instruction, i) => React.createElement("li", {key: i}, instruction))
+                );
+            }
+            function Recipe({ id, title, ingredients, instructions }) {
+                return React.createElement(
+                    "section",
+                    {id: id},
+                    React.createElement("h1", null, title),
+                    React.createElement(IngredientsList, { ingredients }),
+                    React.createElement(InstructionsList, { instructions })
+                );
+            }
+            const recipe = React.createElement(Recipe, {id, title, ingredients, instructions})
             ReactDOM.render(recipe, document.getElementById("root"))
         </script>
     </body>
