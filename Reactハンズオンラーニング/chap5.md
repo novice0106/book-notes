@@ -12,3 +12,8 @@ python3 -m http.server 8000
 
 本の注釈に拡張機能の設定から「ファイルの URL へのアクセスを許可する」を有効にすればローカルファイルも認識できると書いてあった.
 その通りだった.
+
+## 5.3 webpack を使ってビルド環境を構築する
+
+React 18 以降 `ReactDOM.render` が削除されたので, 書籍の通りに `index.js` を書いてもエラーが起きる.
+`import { ReactDOM } from "react-dom"` の代わりに `import { createRoot } from "react-dom/client"` と書こう. 

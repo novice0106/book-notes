@@ -7,7 +7,6 @@ export default function Instructions({ title, steps }) {
       {steps.map((step, i) => (
         <p key={i}>{step}</p>
       ))}
-      ;
     </section>
   );
 }
