@@ -1,8 +1,8 @@
-import "./App.css";
 import StarRating from "./components/star_rating";
+import "./App.css";
 
 function App() {
-  return <h1 style={{ fontSize: 80 }}>HELLO</h1>;
+  return <StarRating />;
 }
 
 export default App;
