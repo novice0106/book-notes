@@ -1,14 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import colors from "../src/data/color-data.json";
+import React, { createContext } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+export const colorContext = createContext();
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <colorContext.Provider value={{ colors }}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </colorContext.Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
