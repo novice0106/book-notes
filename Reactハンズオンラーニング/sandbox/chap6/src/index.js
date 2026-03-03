@@ -1,3 +1,4 @@
+import ColorProvider from "./components/ColorProvider";
 import colors from "../src/data/color-data.json";
 import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
@@ -10,11 +11,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 export const colorContext = createContext();
 
 root.render(
-  <colorContext.Provider value={{ colors }}>
+  <ColorProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </colorContext.Provider>
+  </ColorProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
