@@ -1,7 +1,7 @@
-import Checkbox from "./components/Checkbox";
+import AddPhraseForm from "./components/AddPhraseForm";
 
 function App() {
-  return <Checkbox></Checkbox>;
+  return <AddPhraseForm></AddPhraseForm>;
 }
 
 export default App;
