@@ -1,7 +1,8 @@
-import AddPhraseForm from "./components/AddPhraseForm";
+import WordCount from "./components/WordCount";
+import MouseTrack from "./components/MouseTrack"
 
 function App() {
-  return <AddPhraseForm></AddPhraseForm>;
+  return <MouseTrack></MouseTrack>;
 }
 
 export default App;
