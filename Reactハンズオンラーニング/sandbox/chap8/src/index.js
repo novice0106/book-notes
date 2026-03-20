@@ -4,25 +4,14 @@ import "./index.css";
 import App from "./GithubUser";
 import reportWebVitals from "./reportWebVitals";
 import List from "./List";
+import tahoe_peaks from "./data/TahoePeaks";
+import fake_users from "./data/FakeUsers";
+import FakeUsers from "./FakeUsers"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const tahoe_peaks = [
-  { name: "Freel Peak", elevation: 10891 },
-  { name: "Monument Peak", elevation: 10067 },
-  { name: "Pyramid Peak", elevation: 9983 },
-  { name: "Mt. Tallac", elevation: 9735 },
-];
 root.render(
   <React.StrictMode>
-    <List
-      data={tahoe_peaks}
-      renderEmpty={() => <p>This list is empty</p>}
-      renderItem={(item) => (
-        <>
-          {item.name} - {item.elevation.toLocaleString()}
-        </>
-      )}
-    ></List>
+  <FakeUsers></FakeUsers>
   </React.StrictMode>
 );
 
