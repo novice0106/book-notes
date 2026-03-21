@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
+import {useState} from "react"
+import useFetch from "./useFetch";
+import SearchForm from "./SearchForm"
 
 function GithubUser({ login }) {
-  const [data, setData] = useState();
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!login) return;
-    setLoading(true);
-    fetch(`https://api.github.com/users/${login}`)
-      .then((data) => data.json())
-      .then(setData)
-      .then(() => setLoading(false))
-      .catch(setError);
-  }, [login]);
+  const { loading, data, error } = useFetch(`https://api.github.com/users/${login}`);
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
   if (loading) return <h1>loading...</h1>;
@@ -31,6 +21,13 @@ function GithubUser({ login }) {
   );
 }
 
-export default function App() {
-  return <GithubUser login="novice0106"></GithubUser>;
+export default function GithubUserApp() {
+  const [login, setLogin] = useState("novice0106")
+  
+  return (
+    <>
+      <SearchForm value={login} onSearch={setLogin}></SearchForm>
+      <GithubUser login={login}></GithubUser>
+    </>
+  )
 }

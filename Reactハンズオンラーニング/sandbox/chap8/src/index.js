@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./GithubUser";
+import GithubUserApp from "./GithubUser";
 import reportWebVitals from "./reportWebVitals";
 import List from "./List";
 import tahoe_peaks from "./data/TahoePeaks";
@@ -11,7 +11,7 @@ import FakeUsers from "./FakeUsers"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-  <FakeUsers></FakeUsers>
+  <GithubUserApp></GithubUserApp>
   </React.StrictMode>
 );
 
