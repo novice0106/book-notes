@@ -1,14 +1,17 @@
-import {useState} from "react"
-import useFetch from "./useFetch";
-import SearchForm from "./SearchForm"
+import { useState } from "react";
+import SearchForm from "./SearchForm";
+import Fetch from "./Fetch";
 
 function GithubUser({ login }) {
-  const { loading, data, error } = useFetch(`https://api.github.com/users/${login}`);
+  return (
+    <Fetch
+      uri={`https://api.github.com/users/${login}`}
+      renderSuccess={UserDetails}
+    />
+  );
+}
 
-  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
-  if (loading) return <h1>loading...</h1>;
-  if (!data) return null;
-
+function UserDetails({ data }) {
   return (
     <div className="githubUser">
       <img src={data.avatar_url} alt={data.login} style={{ width: 200 }} />
@@ -22,12 +25,12 @@ function GithubUser({ login }) {
 }
 
 export default function GithubUserApp() {
-  const [login, setLogin] = useState("novice0106")
-  
+  const [login, setLogin] = useState("novice0106");
+
   return (
     <>
       <SearchForm value={login} onSearch={setLogin}></SearchForm>
       <GithubUser login={login}></GithubUser>
     </>
-  )
+  );
 }
